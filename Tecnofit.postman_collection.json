@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "1e1a6dc8-2a38-417a-bd6c-0a9a93661614",
+		"name": "Tecnofit",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30748205"
+	},
+	"item": [
+		{
+			"name": "Full Movement",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movement/full/Back%20Squat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movement",
+						"full",
+						"Back%20Squat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movement",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movement/Back%20Squat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movement",
+						"Back%20Squat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

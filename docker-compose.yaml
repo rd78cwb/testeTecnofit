@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  tecnofit_app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: tecnofit_app
+    volumes:
+      - ./:/var/www/html
+      - ./logs/apache2:/var/log/apache2
+      - ./logs/php:/var/log/php
+      - ./conf/tecnofit.conf:/etc/apache2/sites-available/000-default.conf
+    ports:
+      - "8080:80"
+    networks:
+      - tecnofit_net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    depends_on:
+      - tecnofit_db
+
+  tecnofit_db:
+    image: mysql:8.0
+    container_name: tecnofit_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: tecnofit
+      MYSQL_USER: tecnofit_user
+      MYSQL_PASSWORD: tecnofit_pass
+      MYSQL_HOST: tecnofit_db
+      MYSQL_PORT: 3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./logs/mysql:/var/log/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    networks:
+      - tecnofit_net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+
+
+networks:
+  tecnofit_net:
+    driver: bridge
